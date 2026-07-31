@@ -92,7 +92,7 @@ function StyleCard({
     <button
       onClick={async () => trigger(await copyAll())}
       style={{ '--acc': accent } as CSSProperties}
-      className="group relative flex flex-col gap-2.5 rounded-2xl border border-[#e5ddcf] bg-white p-5 text-left shadow-[0_1px_3px_rgba(35,33,32,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--acc)_45%,transparent)] hover:shadow-[0_14px_36px_color-mix(in_srgb,var(--acc)_18%,transparent)] active:scale-[0.98]"
+      className="group relative flex flex-col gap-2 rounded-2xl border border-[#e5ddcf] bg-white p-4 text-left shadow-[0_1px_3px_rgba(35,33,32,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--acc)_45%,transparent)] hover:shadow-[0_14px_36px_color-mix(in_srgb,var(--acc)_18%,transparent)] active:scale-[0.98]"
     >
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-2">
@@ -118,11 +118,11 @@ function StyleCard({
       </div>
 
       {state === 'ok' ? (
-        <span className="font-display min-h-[56px] text-[19px] font-semibold text-[#15803d]">
+        <span className="font-display min-h-[32px] text-[19px] font-semibold text-[#15803d]">
           {lines.length > 1 ? `All ${lines.length} titles copied ✓` : 'Copied to clipboard ✓'}
         </span>
       ) : (
-        <span className={`font-display block text-[#232120] ${lines.length > 1 ? 'max-h-44 space-y-2 overflow-y-auto pr-1 text-[15px]' : 'min-h-[56px] text-[19px] font-semibold leading-snug'}`}>
+        <span className={`font-display block text-[#232120] ${lines.length > 1 ? 'max-h-44 space-y-2 overflow-y-auto pr-1 text-[15px]' : 'min-h-[32px] text-[19px] font-semibold leading-snug'}`}>
           {lines.map((line, i) =>
             explain ? (
               <span key={i} className="block font-semibold leading-relaxed">
@@ -138,9 +138,6 @@ function StyleCard({
           )}
         </span>
       )}
-      <span className="text-[11px] text-[#a89e8d]">
-        {lines.length > 1 ? `Click to copy all ${lines.length}` : 'Click to copy'}
-      </span>
     </button>
   )
 }
@@ -182,7 +179,7 @@ export default function ConverterTool() {
   ]
 
   return (
-    <section id="converter" className="anim-fade-up relative mx-auto w-full max-w-4xl px-4 [animation-delay:280ms]">
+    <section id="converter" className="anim-fade-up relative mx-auto w-full max-w-4xl min-[1600px]:max-w-[1440px] px-4 [animation-delay:280ms]">
       <div className="overflow-hidden rounded-3xl border border-[#e5ddcf] bg-[#fffdf8] shadow-[0_24px_70px_rgba(35,33,32,0.09)]">
         <div className="flex items-center justify-between border-b border-[#ece4d4] bg-[#f7f1e5] px-5 py-3 sm:px-7">
           <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#8a8071]">Manuscript Desk</span>
@@ -231,8 +228,11 @@ export default function ConverterTool() {
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={batch ? `paste a whole list — e.g.\n${SAMPLE}\nwar and peace\na brief history of time` : `type or paste a headline — e.g. ${SAMPLE}`}
-              rows={batch ? 5 : 2}
+              placeholder={batch ? `paste a whole list — e.g.
+${SAMPLE}
+war and peace
+a brief history of time` : `type or paste a headline — e.g. ${SAMPLE}`}
+              rows={batch ? 5 : 3}
               maxLength={5000}
               className="mt-2 w-full resize-y rounded-xl border border-[#ddd3c0] bg-white px-4 py-3 font-display text-[19px] font-semibold text-[#232120] outline-none transition-colors placeholder:font-normal placeholder:italic placeholder:text-[#b6ab97] focus:border-[#b91c1c]/60 focus:shadow-[0_0_0_3px_rgba(185,28,28,0.08)]"
             />

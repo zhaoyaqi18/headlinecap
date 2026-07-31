@@ -55,8 +55,8 @@ export default function HeadlineAnalyzer() {
   ]
 
   return (
-    <section id="analyzer" className="mx-auto w-full max-w-4xl px-4 pt-14">
-      <div className="text-center">
+    <section id="analyzer" className="mx-auto flex w-full max-w-4xl min-[1600px]:max-w-[1440px] flex-col pt-14">
+      <div className="flex min-h-[116px] flex-col items-center justify-center text-center">
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#b45309]">Headline Analyzer</p>
         <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#232120] sm:text-3xl">
           Will anyone actually click it?
@@ -67,8 +67,13 @@ export default function HeadlineAnalyzer() {
         </p>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-3xl border border-[#e5ddcf] bg-[#fffdf8] shadow-[0_18px_50px_rgba(35,33,32,0.08)]">
-        <div className="p-5 sm:p-7">
+      <div className="mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-[#e5ddcf] bg-[#fffdf8] shadow-[0_18px_50px_rgba(35,33,32,0.08)]">
+        {/* top bar — same height as Case Detective for input alignment */}
+        <div className="flex h-[52px] items-center justify-between border-b border-[#ece4d4] bg-[#f7f1e5] px-5 sm:px-7">
+          <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#8a8071]">Score Report</span>
+          <span className="text-[11px] text-[#a89e8d]">live scoring · deterministic</span>
+        </div>
+        <div className="flex-1 p-5 sm:p-7">
           <label className="block">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#8a8071]">Headline to score</span>
             <textarea
@@ -86,8 +91,8 @@ export default function HeadlineAnalyzer() {
 
           <div className="mt-5 grid gap-4 sm:grid-cols-[200px_1fr]">
             {/* score dial */}
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-[#f1ead9] bg-[#fbf8f1] px-4 py-5">
-              <span className="font-display text-[56px] font-bold leading-none tracking-tight" style={{ color }}>
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-[#f1ead9] bg-[#fbf8f1] px-4 py-4">
+              <span className="font-display text-[44px] font-bold leading-none tracking-tight" style={{ color }}>
                 {report.score}
               </span>
               <span className="mt-1 text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color }}>
@@ -104,7 +109,7 @@ export default function HeadlineAnalyzer() {
             {/* stat chips */}
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {stats.map((s) => (
-                <div key={s.label} className="rounded-xl border border-[#f1ead9] bg-[#fbf8f1] px-3.5 py-3">
+                <div key={s.label} className="rounded-xl border border-[#f1ead9] bg-[#fbf8f1] px-3.5 py-2.5">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#8a8071]">{s.label}</span>
                     <span className={`h-1.5 w-1.5 rounded-full ${s.ok ? 'bg-[#15803d]' : 'bg-[#d6cbb4]'}`} />
@@ -117,7 +122,7 @@ export default function HeadlineAnalyzer() {
               ))}
 
               {/* tips card spans the rest */}
-              <div className="col-span-2 rounded-xl border border-[#f1d4d4] bg-[#fdf6f3] px-3.5 py-3 sm:col-span-1">
+              <div className="col-span-2 rounded-xl border border-[#f1d4d4] bg-[#fdf6f3] px-3.5 py-2.5 sm:col-span-1">
                 <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#b91c1c]">Editor's notes</span>
                 <ul className="mt-1 space-y-1 text-[11px] leading-snug text-[#5c554a]">
                   {report.tips.slice(0, 3).map((t) => (

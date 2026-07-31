@@ -30,7 +30,7 @@ export default function Home() {
       </div>
 
       {/* header */}
-      <header className="anim-fade-up relative mx-auto flex w-full max-w-4xl items-center justify-between px-4 pt-6">
+      <header className="anim-fade-up relative mx-auto flex w-full max-w-4xl min-[1600px]:max-w-[1440px] items-center justify-between px-4 pt-6">
         <div className="flex items-center gap-2.5">
           <div className="font-display flex h-9 w-9 items-center justify-center rounded-lg border-2 border-[#232120] bg-white text-[15px] font-bold text-[#232120] shadow-[2px_2px_0_#232120]">
             Aa
@@ -58,13 +58,13 @@ export default function Home() {
       </header>
 
       {/* hero */}
-      <section className="relative mx-auto w-full max-w-4xl px-4 pb-12 pt-14 text-center sm:pt-20">
+      <section className="relative mx-auto w-full max-w-4xl min-[1600px]:max-w-[1440px] px-4 pb-12 pt-14 text-center sm:pt-20">
         <div className="anim-fade-up mx-auto inline-flex items-center gap-2 rounded-full border border-[#e5ddcf] bg-white px-3.5 py-1.5 text-[11px] font-medium text-[#8a8071] [animation-delay:80ms]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#b91c1c]" />
           Free · No sign-up · AP / APA / Chicago / MLA side by side
         </div>
 
-        <h1 className="anim-fade-up font-display mx-auto mt-7 max-w-4xl text-[46px] font-bold leading-[1.08] tracking-tight text-[#232120] [animation-delay:160ms] sm:text-7xl lg:text-[92px]">
+        <h1 className="anim-fade-up font-display mx-auto mt-7 max-w-4xl min-[1600px]:max-w-[1440px] text-[46px] font-bold leading-[1.08] tracking-tight text-[#232120] [animation-delay:160ms] sm:text-7xl lg:text-[92px]">
           Every headline,
           <br />
           <span className="italic text-[#b91c1c]">properly dressed.</span>
@@ -83,8 +83,10 @@ export default function Home() {
 
       <div className="relative">
         <ConverterTool />
-        <CaseDetective />
-        <HeadlineAnalyzer />
+        <div className="mx-auto w-full max-w-4xl min-[1600px]:max-w-[1440px] px-4 lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-6">
+          <CaseDetective />
+          <HeadlineAnalyzer />
+        </div>
         <SlugGenerator />
         <SeoContent />
       </div>

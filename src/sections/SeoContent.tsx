@@ -3,8 +3,17 @@ const COMPARE_ROWS = [
   { word: 'Coordinating conjunctions (and, but, or)', ap: 'lowercase', apa: 'lowercase', chicago: 'lowercase', mla: 'lowercase' },
   { word: 'Short prepositions (in, on, at, to)', ap: 'lowercase', apa: 'lowercase', chicago: 'lowercase', mla: 'lowercase' },
   { word: 'Long prepositions (with, through, into)', ap: 'CAPITALIZED', apa: 'CAPITALIZED', chicago: 'lowercase', mla: 'lowercase' },
+  { word: 'Subordinating conjunctions (because, although, since)', ap: 'CAPITALIZED', apa: 'CAPITALIZED', chicago: 'CAPITALIZED', mla: 'CAPITALIZED' },
+  { word: 'Verbs (is, are, was, have)', ap: 'CAPITALIZED', apa: 'CAPITALIZED', chicago: 'CAPITALIZED', mla: 'CAPITALIZED' },
   { word: 'First & last word', ap: 'capitalized', apa: 'capitalized', chicago: 'capitalized', mla: 'capitalized' },
   { word: 'Word after a colon', ap: 'capitalized', apa: 'capitalized', chicago: 'capitalized', mla: 'capitalized' },
+]
+
+const STYLE_GUIDE_CARDS = [
+  { name: 'AP', color: '#2563eb', usedBy: 'News & journalism — wire services, newspapers, broadcast scripts.' },
+  { name: 'APA', color: '#b91c1c', usedBy: 'Academic papers in the social sciences — psychology, education, business.' },
+  { name: 'Chicago', color: '#15803d', usedBy: 'Books & general publishing — novels, nonfiction, magazines. The safest default.' },
+  { name: 'MLA', color: '#7c3aed', usedBy: 'Humanities essays — literature, languages, cultural studies.' },
 ]
 
 const FAQS = [
@@ -52,72 +61,87 @@ const FAQS = [
 
 export default function SeoContent() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 pb-24">
-      {/* style comparison table */}
+    <div className="mx-auto w-full max-w-4xl min-[1600px]:max-w-[1440px] px-4 pb-24">
+      {/* style comparison + quick reference */}
       <section className="mt-16">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-[#232120]">
-          One rule splits the four styles
-        </h2>
-        <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-[#5c554a]">
-          Every style guide agrees on articles, conjunctions and short prepositions.
-          The famous disagreement is over <i>long</i> prepositions — that is why the converter
-          shows all four results instead of making you pick first.
-        </p>
-        <div className="mt-5 overflow-x-auto rounded-2xl border border-[#e5ddcf] bg-white shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
-          <table className="w-full min-w-[560px] text-left text-[13px]">
-            <thead>
-              <tr className="border-b border-[#ece4d4] bg-[#f7f1e5] text-[10px] uppercase tracking-wider text-[#8a8071]">
-                <th className="px-4 py-3 font-bold">Word type</th>
-                <th className="px-4 py-3 font-bold text-[#2563eb]">AP</th>
-                <th className="px-4 py-3 font-bold text-[#b91c1c]">APA</th>
-                <th className="px-4 py-3 font-bold text-[#15803d]">Chicago</th>
-                <th className="px-4 py-3 font-bold text-[#7c3aed]">MLA</th>
-              </tr>
-            </thead>
-            <tbody>
-              {COMPARE_ROWS.map((r, i) => (
-                <tr key={r.word} className={`border-b border-[#f1ead9] last:border-0 ${i % 2 ? 'bg-[#fbf8f1]' : ''}`}>
-                  <td className="px-4 py-3 font-medium text-[#232120]">{r.word}</td>
-                  <td className={`px-4 py-3 ${r.ap === 'CAPITALIZED' ? 'font-bold text-[#2563eb]' : 'text-[#5c554a]'}`}>{r.ap}</td>
-                  <td className={`px-4 py-3 ${r.apa === 'CAPITALIZED' ? 'font-bold text-[#b91c1c]' : 'text-[#5c554a]'}`}>{r.apa}</td>
-                  <td className={`px-4 py-3 ${r.chicago === 'CAPITALIZED' ? 'font-bold text-[#15803d]' : 'text-[#5c554a]'}`}>{r.chicago}</td>
-                  <td className={`px-4 py-3 ${r.mla === 'CAPITALIZED' ? 'font-bold text-[#7c3aed]' : 'text-[#5c554a]'}`}>{r.mla}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* worked example */}
-      <section className="mt-14 rounded-2xl border border-[#e5ddcf] bg-white p-6 shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
-        <h2 className="font-display text-xl font-bold tracking-tight text-[#232120]">
-          Watch one sentence become four headlines
-        </h2>
-        <p className="mt-1.5 text-[13px] text-[#8a8071]">input: <i>walking through the park with my dog</i></p>
-        <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
-          {[
-            { name: 'AP', out: 'Walking Through the Park With My Dog', color: '#2563eb' },
-            { name: 'APA', out: 'Walking Through the Park With My Dog', color: '#b91c1c' },
-            { name: 'Chicago', out: 'Walking through the Park with My Dog', color: '#15803d' },
-            { name: 'MLA', out: 'Walking through the Park with My Dog', color: '#7c3aed' },
-          ].map((r) => (
-            <div key={r.name} className="rounded-xl border border-[#f1ead9] bg-[#fbf8f1] px-4 py-3">
-              <span className="text-[10px] font-bold uppercase tracking-[0.14em]" style={{ color: r.color }}>
-                {r.name}
-              </span>
-              <p className="font-display mt-1 text-[16px] font-semibold text-[#232120]">{r.out}</p>
+        <div className="lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-6">
+          {/* left column */}
+          <div className="flex flex-col">
+            <h3 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120] sm:text-3xl">
+              One rule splits the four styles
+            </h3>
+            <p className="mt-1.5 min-h-[58px] text-center text-[12px] leading-relaxed text-[#5c554a]">
+              Every style guide agrees on articles, conjunctions and short prepositions.
+              The famous disagreement is over <i>long</i> prepositions — that is why the converter
+              shows all four results instead of making you pick first.
+            </p>
+            <div className="mt-3 flex-1 overflow-x-auto rounded-2xl border border-[#e5ddcf] bg-white shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
+              <table className="w-full min-w-[560px] text-left text-[13px]">
+                <thead>
+                  <tr className="border-b border-[#ece4d4] bg-[#f7f1e5] text-[10px] uppercase tracking-wider text-[#8a8071]">
+                    <th className="px-4 py-3 font-bold">Word type</th>
+                    <th className="px-4 py-3 font-bold text-[#2563eb]">AP</th>
+                    <th className="px-4 py-3 font-bold text-[#b91c1c]">APA</th>
+                    <th className="px-4 py-3 font-bold text-[#15803d]">Chicago</th>
+                    <th className="px-4 py-3 font-bold text-[#7c3aed]">MLA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE_ROWS.map((r, i) => (
+                    <tr key={r.word} className={`border-b border-[#f1ead9] last:border-0 ${i % 2 ? 'bg-[#fbf8f1]' : ''}`}>
+                      <td className="px-4 py-3 font-medium text-[#232120]">{r.word}</td>
+                      <td className={`px-4 py-3 ${r.ap === 'CAPITALIZED' ? 'font-bold text-[#2563eb]' : 'text-[#5c554a]'}`}>{r.ap}</td>
+                      <td className={`px-4 py-3 ${r.apa === 'CAPITALIZED' ? 'font-bold text-[#b91c1c]' : 'text-[#5c554a]'}`}>{r.apa}</td>
+                      <td className={`px-4 py-3 ${r.chicago === 'CAPITALIZED' ? 'font-bold text-[#15803d]' : 'text-[#5c554a]'}`}>{r.chicago}</td>
+                      <td className={`px-4 py-3 ${r.mla === 'CAPITALIZED' ? 'font-bold text-[#7c3aed]' : 'text-[#5c554a]'}`}>{r.mla}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ))}
+          </div>
+
+          {/* right column */}
+          <div className="mt-5 flex flex-col lg:mt-0">
+            <h3 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120] sm:text-3xl">
+              Which style should you use?
+            </h3>
+            <p className="mx-auto mt-1.5 min-h-[58px] max-w-xs text-center text-[12px] leading-relaxed text-[#5c554a]">
+              Pick the guide that matches your writing — news, academia, publishing or essays.
+            </p>
+            <div className="mt-3 flex flex-1 flex-col overflow-hidden rounded-2xl border border-[#e5ddcf] bg-white shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
+              <div className="flex items-center justify-between border-b border-[#ece4d4] bg-[#f7f1e5] px-4 py-3 text-[10px] font-bold uppercase tracking-wider text-[#8a8071]">
+                <span>Style guide</span>
+                <span>Best for</span>
+              </div>
+              <div className="flex flex-1 items-center justify-between gap-3 border-b border-[#f1ead9] bg-[#fbf8f1] px-4 py-3">
+                <span className="text-[12px] font-medium text-[#232120]">Golden rule</span>
+                <span className="text-right text-[12px] leading-snug text-[#b91c1c]">
+                  First &amp; last word always capitalized
+                </span>
+              </div>
+              {STYLE_GUIDE_CARDS.map((s, i) => (
+                <div
+                  key={s.name}
+                  className={`flex flex-1 items-center justify-between gap-3 border-b border-[#f1ead9] px-4 py-3 last:border-0 ${i % 2 ? 'bg-[#fbf8f1]' : ''}`}
+                >
+                  <span className="shrink-0 text-[12px] font-bold uppercase tracking-[0.14em]" style={{ color: s.color }}>
+                    {s.name}
+                  </span>
+                  <span className="text-right text-[12px] leading-snug text-[#5c554a]">{s.usedBy}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="mt-14">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-[#232120]">
+        <h2 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120]">
           Questions, answered
         </h2>
-        <div className="mt-5 space-y-2.5">
+        <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
           {FAQS.map((f) => (
             <details
               key={f.q}
@@ -133,7 +157,66 @@ export default function SeoContent() {
         </div>
       </section>
 
+      {/* more free tools — site matrix */}
+      <section className="mt-16">
+        <h2 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120]">
+          More free tools you might need
+        </h2>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          {[
+            {
+              name: 'PDF Slim',
+              color: '#2563eb',
+              href: 'https://pdfslim.app/?utm_source=headlinecap&utm_medium=matrix&utm_campaign=site-banner',
+              desc: 'Compress any PDF to an exact target size — 100% local, no upload, no sign-up.',
+              formats: '50KB–5MB targets, merge, split & more',
+            },
+            {
+              name: 'CompressIO',
+              color: '#15803d',
+              href: 'https://compressio.cc/?utm_source=headlinecap&utm_medium=matrix&utm_campaign=site-banner',
+              desc: 'Compress, convert, crop & resize images right in your browser — no upload, no sign-up.',
+              formats: 'JPG, PNG, WebP, HEIC, AVIF, SVG & more',
+            },
+            {
+              name: 'HideChar',
+              color: '#7c3aed',
+              href: 'https://hidechar.com/?utm_source=headlinecap&utm_medium=matrix&utm_campaign=site-banner',
+              desc: 'Turn any sentence into invisible text — encode secret messages that look blank but survive copy & paste.',
+              formats: 'PUBG, Free Fire, Roblox, Discord & IG bios',
+            },
+          ].map((t) => (
+            <a
+              key={t.name}
+              href={t.href}
+              target="_blank"
+              rel="sponsored noopener"
+              className="group rounded-2xl border border-[#e5ddcf] bg-white p-5 shadow-[0_1px_3px_rgba(35,33,32,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#b91c1c]/40 hover:shadow-[0_4px_18px_rgba(185,28,28,0.08)]"
+            >
+              <div className="flex items-center gap-2">
+                <span className="font-display text-lg font-bold" style={{ color: t.color }}>
+                  {t.name}
+                </span>
+                <span className="rounded-full bg-[#b91c1c]/10 px-2 py-0.5 text-[10px] font-semibold text-[#b91c1c]">
+                  ✓ 100% FREE
+                </span>
+              </div>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-[#5c554a]">{t.desc}</p>
+              <p className="mt-1 text-[11px] text-[#a89e8d]">{t.formats}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <footer className="mt-16 border-t border-[#e5ddcf] pt-6 text-center text-[12px] text-[#a89e8d]">
+        <p className="mb-1.5">
+          More free tools:{' '}
+          <a href="https://pdfslim.app/?utm_source=headlinecap&utm_medium=matrix&utm_campaign=footer" target="_blank" rel="sponsored noopener" className="text-[#b91c1c] hover:underline">PDF Slim</a>
+          {' · '}
+          <a href="https://compressio.cc/?utm_source=headlinecap&utm_medium=matrix&utm_campaign=footer" target="_blank" rel="sponsored noopener" className="text-[#b91c1c] hover:underline">CompressIO</a>
+          {' · '}
+          <a href="https://hidechar.com/?utm_source=headlinecap&utm_medium=matrix&utm_campaign=footer" target="_blank" rel="sponsored noopener" className="text-[#b91c1c] hover:underline">HideChar</a>
+        </p>
         HeadlineCap — free title case converter · no sign-up · runs 100% in your browser · AP / APA / Chicago / MLA
         <br className="sm:hidden" />
         {' '}<a href="https://tally.so/r/PdW5lx" target="_blank" rel="noopener" className="text-[#b91c1c] hover:underline">Feedback</a>

@@ -50,8 +50,8 @@ export default function CaseDetective() {
   const fixAll = async () => trigger(await copyText(toTitleCase(effective, style)))
 
   return (
-    <section id="detective" className="mx-auto w-full max-w-4xl px-4 pt-14">
-      <div className="text-center">
+    <section id="detective" className="mx-auto flex w-full max-w-4xl min-[1600px]:max-w-[1440px] flex-col pt-14">
+      <div className="flex min-h-[116px] flex-col items-center justify-center text-center">
         <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#b91c1c]">Case Detective</p>
         <h2 className="font-display mt-2 text-2xl font-bold tracking-tight text-[#232120] sm:text-3xl">
           Already wrote it? Let us grade it.
@@ -62,8 +62,8 @@ export default function CaseDetective() {
         </p>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-3xl border border-[#e5ddcf] bg-[#fffdf8] shadow-[0_18px_50px_rgba(35,33,32,0.08)]">
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#ece4d4] bg-[#f7f1e5] px-5 py-3 sm:px-7">
+      <div className="mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-[#e5ddcf] bg-[#fffdf8] shadow-[0_18px_50px_rgba(35,33,32,0.08)]">
+        <div className="flex h-[52px] flex-wrap items-center justify-between gap-2 border-b border-[#ece4d4] bg-[#f7f1e5] px-5 sm:px-7">
           <div className="flex flex-wrap gap-1.5">
             {STYLE_GUIDES.map((s) => (
               <button
@@ -87,7 +87,7 @@ export default function CaseDetective() {
           </span>
         </div>
 
-        <div className="p-5 sm:p-7">
+        <div className="flex-1 p-5 sm:p-7">
           <label className="block">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#8a8071]">Your finished headline</span>
             <textarea
