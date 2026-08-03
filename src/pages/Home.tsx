@@ -70,12 +70,12 @@ export default function Home() {
           <span className="italic text-[#b91c1c]">properly dressed.</span>
         </h1>
 
-        <p className="anim-fade-up mx-auto mt-3 max-w-lg text-[11px] leading-relaxed text-[#5c554a] [animation-delay:220ms]">
+        <p className="anim-fade-up mx-auto mt-3 max-w-lg text-[11px] leading-relaxed text-[#5c554a] [animation-delay:220ms] sm:text-[13px]">
           Paste a title — get all four style guides at once, each with one-click copy.
         </p>
 
         {/* typewriter accent line */}
-        <p className="anim-fade-up mx-auto mt-3 max-w-md text-[9px] uppercase tracking-[0.22em] text-[#a89e8d] [animation-delay:240ms]">
+        <p className="anim-fade-up mx-auto mt-3 max-w-md text-[9px] uppercase tracking-[0.22em] text-[#a89e8d] [animation-delay:240ms] sm:text-[11px] sm:tracking-[0.25em]">
           est. for writers · editors · students
           <span className="ink-caret ml-1 inline-block h-3 w-[2px] translate-y-0.5 bg-[#b91c1c]" />
         </p>

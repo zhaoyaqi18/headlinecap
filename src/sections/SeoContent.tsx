@@ -63,7 +63,7 @@ export default function SeoContent() {
   return (
     <div className="mx-auto w-full max-w-4xl min-[1600px]:max-w-[1440px] px-4 pb-24">
       {/* style comparison + quick reference */}
-      <section className="mt-6">
+      <section className="mt-6 sm:mt-16">
         <div className="lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-6">
           {/* left column */}
           <div className="flex flex-col">
@@ -76,24 +76,24 @@ export default function SeoContent() {
               shows all four results instead of making you pick first.
             </p>
             <div className="mt-2 flex-1 overflow-x-auto rounded-2xl border border-[#e5ddcf] bg-white shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
-              <table className="w-full min-w-[560px] text-left text-[10px]">
+              <table className="w-full min-w-[560px] text-left text-[10px] sm:text-[13px]">
                 <thead>
                   <tr className="border-b border-[#ece4d4] bg-[#f7f1e5] text-[10px] uppercase tracking-wider text-[#8a8071]">
-                    <th className="px-3 py-1.5 font-bold">Word type</th>
-                    <th className="px-3 py-1.5 font-bold text-[#2563eb]">AP</th>
-                    <th className="px-3 py-1.5 font-bold text-[#b91c1c]">APA</th>
-                    <th className="px-3 py-1.5 font-bold text-[#15803d]">Chicago</th>
-                    <th className="px-3 py-1.5 font-bold text-[#7c3aed]">MLA</th>
+                    <th className="px-3 py-1 sm:px-4 sm:py-3.5 font-bold">Word type</th>
+                    <th className="px-3 py-1 sm:px-4 sm:py-3.5 font-bold text-[#2563eb]">AP</th>
+                    <th className="px-3 py-1 sm:px-4 sm:py-3.5 font-bold text-[#b91c1c]">APA</th>
+                    <th className="px-3 py-1 sm:px-4 sm:py-3.5 font-bold text-[#15803d]">Chicago</th>
+                    <th className="px-3 py-1 sm:px-4 sm:py-3.5 font-bold text-[#7c3aed]">MLA</th>
                   </tr>
                 </thead>
                 <tbody>
                   {COMPARE_ROWS.map((r, i) => (
                     <tr key={r.word} className={`border-b border-[#f1ead9] last:border-0 ${i % 2 ? 'bg-[#fbf8f1]' : ''}`}>
-                      <td className="px-3 py-1 font-medium text-[#232120]">{r.word}</td>
-                      <td className={`px-3 py-1 ${r.ap === 'CAPITALIZED' ? 'font-bold text-[#2563eb]' : 'text-[#5c554a]'}`}>{r.ap}</td>
-                      <td className={`px-3 py-1 ${r.apa === 'CAPITALIZED' ? 'font-bold text-[#b91c1c]' : 'text-[#5c554a]'}`}>{r.apa}</td>
-                      <td className={`px-3 py-1 ${r.chicago === 'CAPITALIZED' ? 'font-bold text-[#15803d]' : 'text-[#5c554a]'}`}>{r.chicago}</td>
-                      <td className={`px-3 py-1 ${r.mla === 'CAPITALIZED' ? 'font-bold text-[#7c3aed]' : 'text-[#5c554a]'}`}>{r.mla}</td>
+                      <td className="px-3 py-1 sm:px-4 sm:py-3 font-medium text-[#232120]">{r.word}</td>
+                      <td className={`px-3 py-1 sm:px-4 sm:py-3 ${r.ap === 'CAPITALIZED' ? 'font-bold text-[#2563eb]' : 'text-[#5c554a]'}`}>{r.ap}</td>
+                      <td className={`px-3 py-1 sm:px-4 sm:py-3 ${r.apa === 'CAPITALIZED' ? 'font-bold text-[#b91c1c]' : 'text-[#5c554a]'}`}>{r.apa}</td>
+                      <td className={`px-3 py-1 sm:px-4 sm:py-3 ${r.chicago === 'CAPITALIZED' ? 'font-bold text-[#15803d]' : 'text-[#5c554a]'}`}>{r.chicago}</td>
+                      <td className={`px-3 py-1 sm:px-4 sm:py-3 ${r.mla === 'CAPITALIZED' ? 'font-bold text-[#7c3aed]' : 'text-[#5c554a]'}`}>{r.mla}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -137,7 +137,7 @@ export default function SeoContent() {
       </section>
 
       {/* FAQ */}
-      <section className="mt-6">
+      <section className="mt-6 sm:mt-14">
         <h2 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120]">
           Questions, answered
         </h2>
@@ -158,7 +158,7 @@ export default function SeoContent() {
       </section>
 
       {/* more free tools — site matrix */}
-      <section className="mt-6">
+      <section className="mt-6 sm:mt-16">
         <h2 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120]">
           More free tools you might need
         </h2>
