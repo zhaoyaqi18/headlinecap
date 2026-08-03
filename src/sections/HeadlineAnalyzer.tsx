@@ -89,32 +89,27 @@ export default function HeadlineAnalyzer() {
             <p className="mt-2 text-[12px] text-[#a89e8d]">Scoring a sample — type your own headline for a live score.</p>
           )}
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-[200px_1fr]">
-            {/* score dial */}
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-[#f1ead9] bg-[#fbf8f1] px-4 py-4">
-              <span className="font-display text-[44px] font-bold leading-none tracking-tight" style={{ color }}>
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
+            {/* score card — same size as stat chips */}
+            <div className="rounded-xl border border-[#f1ead9] bg-[#fbf8f1] px-2.5 py-2 sm:px-3.5 sm:py-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#8a8071]">Score</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#15803d]" />
+              </div>
+              <div className="font-display mt-1 text-[15px] font-bold sm:text-[20px]" style={{ color }}>
                 {report.score}
-              </span>
-              <span className="mt-1 text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color }}>
+              </div>
+              <div className="truncate text-[10px] text-[#a89e8d]">
                 {scoreLabel(report.score)}
-              </span>
-              <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-[#ece4d4]">
-                <div
-                  className="h-full rounded-full transition-all duration-500"
-                  style={{ width: `${report.score}%`, background: color }}
-                />
               </div>
             </div>
-
-            {/* stat chips */}
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {stats.map((s) => (
-                <div key={s.label} className="rounded-xl border border-[#f1ead9] bg-[#fbf8f1] px-3.5 py-2.5">
+                <div key={s.label} className="rounded-xl border border-[#f1ead9] bg-[#fbf8f1] px-2.5 py-2 sm:px-3.5 sm:py-2.5">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#8a8071]">{s.label}</span>
                     <span className={`h-1.5 w-1.5 rounded-full ${s.ok ? 'bg-[#15803d]' : 'bg-[#d6cbb4]'}`} />
                   </div>
-                  <div className="font-display mt-1 text-[20px] font-bold text-[#232120]">{s.value}</div>
+                  <div className="font-display mt-1 text-[15px] font-bold text-[#232120] sm:text-[20px]">{s.value}</div>
                   <div className="truncate text-[10px] text-[#a89e8d]" title={s.hint}>
                     {s.hint}
                   </div>
@@ -122,7 +117,7 @@ export default function HeadlineAnalyzer() {
               ))}
 
               {/* tips card spans the rest */}
-              <div className="col-span-2 rounded-xl border border-[#f1d4d4] bg-[#fdf6f3] px-3.5 py-2.5 sm:col-span-1">
+              <div className="col-span-2 rounded-xl border border-[#f1d4d4] bg-[#fdf6f3] px-2.5 py-2 sm:col-span-3 sm:px-3.5 sm:py-2.5">
                 <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#b91c1c]">Editor's notes</span>
                 <ul className="mt-1 space-y-1 text-[11px] leading-snug text-[#5c554a]">
                   {report.tips.slice(0, 3).map((t) => (
@@ -136,7 +131,6 @@ export default function HeadlineAnalyzer() {
             </div>
           </div>
         </div>
-      </div>
     </section>
   )
 }

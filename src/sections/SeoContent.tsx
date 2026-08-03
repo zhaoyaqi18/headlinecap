@@ -63,7 +63,7 @@ export default function SeoContent() {
   return (
     <div className="mx-auto w-full max-w-4xl min-[1600px]:max-w-[1440px] px-4 pb-24">
       {/* style comparison + quick reference */}
-      <section className="mt-16">
+      <section className="mt-6">
         <div className="lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-6">
           {/* left column */}
           <div className="flex flex-col">
@@ -75,25 +75,25 @@ export default function SeoContent() {
               The famous disagreement is over <i>long</i> prepositions — that is why the converter
               shows all four results instead of making you pick first.
             </p>
-            <div className="mt-3 flex-1 overflow-x-auto rounded-2xl border border-[#e5ddcf] bg-white shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
-              <table className="w-full min-w-[560px] text-left text-[13px]">
+            <div className="mt-2 flex-1 overflow-x-auto rounded-2xl border border-[#e5ddcf] bg-white shadow-[0_1px_3px_rgba(35,33,32,0.06)]">
+              <table className="w-full min-w-[560px] text-left text-[10px]">
                 <thead>
                   <tr className="border-b border-[#ece4d4] bg-[#f7f1e5] text-[10px] uppercase tracking-wider text-[#8a8071]">
-                    <th className="px-4 py-3 font-bold">Word type</th>
-                    <th className="px-4 py-3 font-bold text-[#2563eb]">AP</th>
-                    <th className="px-4 py-3 font-bold text-[#b91c1c]">APA</th>
-                    <th className="px-4 py-3 font-bold text-[#15803d]">Chicago</th>
-                    <th className="px-4 py-3 font-bold text-[#7c3aed]">MLA</th>
+                    <th className="px-3 py-1.5 font-bold">Word type</th>
+                    <th className="px-3 py-1.5 font-bold text-[#2563eb]">AP</th>
+                    <th className="px-3 py-1.5 font-bold text-[#b91c1c]">APA</th>
+                    <th className="px-3 py-1.5 font-bold text-[#15803d]">Chicago</th>
+                    <th className="px-3 py-1.5 font-bold text-[#7c3aed]">MLA</th>
                   </tr>
                 </thead>
                 <tbody>
                   {COMPARE_ROWS.map((r, i) => (
                     <tr key={r.word} className={`border-b border-[#f1ead9] last:border-0 ${i % 2 ? 'bg-[#fbf8f1]' : ''}`}>
-                      <td className="px-4 py-3 font-medium text-[#232120]">{r.word}</td>
-                      <td className={`px-4 py-3 ${r.ap === 'CAPITALIZED' ? 'font-bold text-[#2563eb]' : 'text-[#5c554a]'}`}>{r.ap}</td>
-                      <td className={`px-4 py-3 ${r.apa === 'CAPITALIZED' ? 'font-bold text-[#b91c1c]' : 'text-[#5c554a]'}`}>{r.apa}</td>
-                      <td className={`px-4 py-3 ${r.chicago === 'CAPITALIZED' ? 'font-bold text-[#15803d]' : 'text-[#5c554a]'}`}>{r.chicago}</td>
-                      <td className={`px-4 py-3 ${r.mla === 'CAPITALIZED' ? 'font-bold text-[#7c3aed]' : 'text-[#5c554a]'}`}>{r.mla}</td>
+                      <td className="px-3 py-1 font-medium text-[#232120]">{r.word}</td>
+                      <td className={`px-3 py-1 ${r.ap === 'CAPITALIZED' ? 'font-bold text-[#2563eb]' : 'text-[#5c554a]'}`}>{r.ap}</td>
+                      <td className={`px-3 py-1 ${r.apa === 'CAPITALIZED' ? 'font-bold text-[#b91c1c]' : 'text-[#5c554a]'}`}>{r.apa}</td>
+                      <td className={`px-3 py-1 ${r.chicago === 'CAPITALIZED' ? 'font-bold text-[#15803d]' : 'text-[#5c554a]'}`}>{r.chicago}</td>
+                      <td className={`px-3 py-1 ${r.mla === 'CAPITALIZED' ? 'font-bold text-[#7c3aed]' : 'text-[#5c554a]'}`}>{r.mla}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -137,28 +137,28 @@ export default function SeoContent() {
       </section>
 
       {/* FAQ */}
-      <section className="mt-14">
+      <section className="mt-6">
         <h2 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120]">
           Questions, answered
         </h2>
-        <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5 sm:gap-2.5">
           {FAQS.map((f) => (
             <details
               key={f.q}
-              className="group rounded-xl border border-[#e5ddcf] bg-white px-5 py-4 open:border-[#b91c1c]/30 open:shadow-[0_4px_18px_rgba(185,28,28,0.06)]"
+              className="group rounded-xl border border-[#e5ddcf] bg-white px-3 py-2.5 open:border-[#b91c1c]/30 open:shadow-[0_4px_18px_rgba(185,28,28,0.06)] sm:px-5 sm:py-4"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between text-[14px] font-semibold text-[#232120] [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between text-[11px] font-semibold leading-snug text-[#232120] [&::-webkit-details-marker]:hidden sm:text-[14px] sm:leading-normal">
                 {f.q}
-                <span className="ml-4 shrink-0 text-[#b91c1c] transition-transform duration-200 group-open:rotate-45">+</span>
+                <span className="ml-2 shrink-0 text-[#b91c1c] transition-transform duration-200 group-open:rotate-45 sm:ml-4">+</span>
               </summary>
-              <p className="mt-3 text-[13px] leading-relaxed text-[#5c554a]">{f.a}</p>
+              <p className="mt-1.5 text-[10px] leading-relaxed text-[#5c554a] sm:mt-3 sm:text-[13px]">{f.a}</p>
             </details>
           ))}
         </div>
       </section>
 
       {/* more free tools — site matrix */}
-      <section className="mt-16">
+      <section className="mt-6">
         <h2 className="font-display text-center text-2xl font-bold tracking-tight text-[#232120]">
           More free tools you might need
         </h2>

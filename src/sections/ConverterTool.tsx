@@ -92,15 +92,15 @@ function StyleCard({
     <button
       onClick={async () => trigger(await copyAll())}
       style={{ '--acc': accent } as CSSProperties}
-      className="group relative flex flex-col gap-2 rounded-2xl border border-[#e5ddcf] bg-white p-4 text-left shadow-[0_1px_3px_rgba(35,33,32,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--acc)_45%,transparent)] hover:shadow-[0_14px_36px_color-mix(in_srgb,var(--acc)_18%,transparent)] active:scale-[0.98]"
+      className="group relative flex min-w-0 flex-col gap-2 rounded-2xl border border-[#e5ddcf] bg-white p-3 text-left shadow-[0_1px_3px_rgba(35,33,32,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--acc)_45%,transparent)] hover:shadow-[0_14px_36px_color-mix(in_srgb,var(--acc)_18%,transparent)] active:scale-[0.98] sm:p-4"
     >
       <div className="flex w-full items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full transition-transform group-hover:scale-125" style={{ background: accent }} />
-          <span className="text-[11px] font-bold uppercase tracking-[0.14em]" style={{ color: accent }}>
+        <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
+          <span className="h-2 w-2 shrink-0 rounded-full transition-transform group-hover:scale-125" style={{ background: accent }} />
+          <span className="truncate text-[10px] font-bold uppercase tracking-[0.1em] sm:text-[11px] sm:tracking-[0.14em]" style={{ color: accent }}>
             {name}
           </span>
-          <span className="rounded-full bg-[#f4efe5] px-2 py-0.5 text-[10px] font-medium text-[#8a8071]">
+          <span className="hidden shrink-0 rounded-full bg-[#f4efe5] px-2 py-0.5 text-[10px] font-medium text-[#8a8071] sm:inline-flex">
             {usedBy}
           </span>
         </div>
@@ -118,11 +118,11 @@ function StyleCard({
       </div>
 
       {state === 'ok' ? (
-        <span className="font-display min-h-[32px] text-[19px] font-semibold text-[#15803d]">
+        <span className="font-display min-h-[24px] text-[14px] font-semibold text-[#15803d] sm:min-h-[32px] sm:text-[19px]">
           {lines.length > 1 ? `All ${lines.length} titles copied ✓` : 'Copied to clipboard ✓'}
         </span>
       ) : (
-        <span className={`font-display block text-[#232120] ${lines.length > 1 ? 'max-h-44 space-y-2 overflow-y-auto pr-1 text-[15px]' : 'min-h-[32px] text-[19px] font-semibold leading-snug'}`}>
+        <span className={`block break-words font-display text-[#232120] ${lines.length > 1 ? 'max-h-36 space-y-1 overflow-y-auto pr-1 text-[12px] sm:max-h-44 sm:space-y-2 sm:text-[15px]' : 'min-h-[24px] text-[14px] font-semibold leading-snug sm:min-h-[32px] sm:text-[19px]'}`}>
           {lines.map((line, i) =>
             explain ? (
               <span key={i} className="block font-semibold leading-relaxed">
@@ -188,7 +188,7 @@ export default function ConverterTool() {
 
         <div className="p-5 sm:p-7">
           {/* mode + explain toggles */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <div className="flex rounded-full border border-[#ddd3c0] bg-white p-0.5">
               {(['Single title', 'Batch mode'] as const).map((label, i) => {
                 const active = batch === (i === 1)
@@ -234,7 +234,7 @@ war and peace
 a brief history of time` : `type or paste a headline — e.g. ${SAMPLE}`}
               rows={batch ? 5 : 3}
               maxLength={5000}
-              className="mt-2 w-full resize-y rounded-xl border border-[#ddd3c0] bg-white px-4 py-3 font-display text-[19px] font-semibold text-[#232120] outline-none transition-colors placeholder:font-normal placeholder:italic placeholder:text-[#b6ab97] focus:border-[#b91c1c]/60 focus:shadow-[0_0_0_3px_rgba(185,28,28,0.08)]"
+              className="mt-2 w-full resize-y rounded-xl border border-[#ddd3c0] bg-white px-3 py-2.5 font-display text-[16px] font-semibold text-[#232120] outline-none transition-colors placeholder:font-normal placeholder:italic placeholder:text-[#b6ab97] focus:border-[#b91c1c]/60 sm:px-4 sm:py-3 sm:text-[19px] focus:shadow-[0_0_0_3px_rgba(185,28,28,0.08)]"
             />
           </label>
           {!input.trim() && (
@@ -254,20 +254,21 @@ a brief history of time` : `type or paste a headline — e.g. ${SAMPLE}`}
           )}
 
           {/* four style cards */}
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-3">
             {results.map((r) => (
               <StyleCard key={r.code} style={r.code} name={r.name} usedBy={r.usedBy} lines={r.lines} explain={explain} />
             ))}
           </div>
 
           {/* quick transforms */}
-          <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#ece4d4] pt-4">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#8a8071]">Quick transforms:</span>
+          <div className="mt-5 border-t border-[#ece4d4] pt-4">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#8a8071]">Quick transforms:</span>
+            <div className="mt-2 flex items-center gap-2">
             {QUICK.map((q) => (
               <button
                 key={q.label}
                 onClick={() => quickCopy(q.label, q.text)}
-                className={`rounded-full border px-3.5 py-1.5 text-[12px] font-medium transition-all active:scale-95 ${
+                className={`rounded-full border px-2.5 py-1 text-[10px] font-medium transition-all active:scale-95 sm:px-3.5 sm:py-1.5 sm:text-[12px] ${
                   quickState === q.label
                     ? 'border-[#15803d] bg-[#15803d] text-white'
                     : 'border-[#ddd3c0] bg-white text-[#5c554a] hover:border-[#b91c1c]/50 hover:text-[#b91c1c]'
@@ -277,6 +278,7 @@ a brief history of time` : `type or paste a headline — e.g. ${SAMPLE}`}
                 {quickState === q.label ? '✓ Copied' : q.label}
               </button>
             ))}
+            </div>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ const STYLE_ACCENTS: Record<StyleGuide, string> = {
 
 function GradedLine({ tokens }: { tokens: CheckedToken[] }) {
   return (
-    <p className="font-display text-[19px] font-semibold leading-relaxed text-[#232120]">
+    <p className="font-display text-[15px] font-semibold leading-relaxed text-[#232120] sm:text-[19px]">
       {tokens.map((t, i) => {
         if (t.type === 'space') return <span key={i}>{t.text}</span>
         if (t.status === 'ok')
@@ -63,13 +63,13 @@ export default function CaseDetective() {
       </div>
 
       <div className="mt-6 flex flex-1 flex-col overflow-hidden rounded-3xl border border-[#e5ddcf] bg-[#fffdf8] shadow-[0_18px_50px_rgba(35,33,32,0.08)]">
-        <div className="flex h-[52px] flex-wrap items-center justify-between gap-2 border-b border-[#ece4d4] bg-[#f7f1e5] px-5 sm:px-7">
+        <div className="flex h-[40px] items-center justify-between gap-2 border-b border-[#ece4d4] bg-[#f7f1e5] px-3 sm:h-[52px] sm:px-7">
           <div className="flex flex-wrap gap-1.5">
             {STYLE_GUIDES.map((s) => (
               <button
                 key={s.code}
                 onClick={() => setStyle(s.code)}
-                className={`rounded-full border px-3 py-1 text-[12px] font-semibold transition-all active:scale-95 ${
+                className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold transition-all active:scale-95 sm:px-3 sm:py-1 sm:text-[12px] ${
                   style === s.code ? 'text-white' : 'border-[#ddd3c0] bg-white text-[#5c554a] hover:text-[#232120]'
                 }`}
                 style={style === s.code ? { background: STYLE_ACCENTS[s.code], borderColor: STYLE_ACCENTS[s.code] } : undefined}
@@ -78,25 +78,25 @@ export default function CaseDetective() {
               </button>
             ))}
           </div>
-          <span
-            className={`rounded-full px-3 py-1 text-[11px] font-bold ${
-              errors === 0 ? 'bg-[#15803d]/10 text-[#15803d]' : 'bg-[#b91c1c]/10 text-[#b91c1c]'
-            }`}
-          >
-            {errors === 0 ? '✓ All clear' : `${errors} word${errors > 1 ? 's' : ''} to fix`}
-          </span>
         </div>
 
         <div className="flex-1 p-5 sm:p-7">
           <label className="block">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#8a8071]">Your finished headline</span>
+            <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8a8071]">
+              Your finished headline
+              <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold normal-case tracking-normal ${
+                errors === 0 ? 'bg-[#15803d]/10 text-[#15803d]' : 'bg-[#b91c1c]/10 text-[#b91c1c]'
+              }`}>
+                {errors === 0 ? '✓ All clear' : `${errors} word${errors > 1 ? 's' : ''} to fix`}
+              </span>
+            </span>
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={`paste your headline — e.g. ${SAMPLE}`}
               rows={2}
               maxLength={500}
-              className="mt-2 w-full resize-y rounded-xl border border-[#ddd3c0] bg-white px-4 py-3 font-display text-[19px] font-semibold text-[#232120] outline-none transition-colors placeholder:font-normal placeholder:italic placeholder:text-[#b6ab97] focus:border-[#b91c1c]/60 focus:shadow-[0_0_0_3px_rgba(185,28,28,0.08)]"
+              className="mt-2 w-full resize-y rounded-xl border border-[#ddd3c0] bg-white px-3 py-2.5 font-display text-[15px] font-semibold text-[#232120] outline-none transition-colors placeholder:font-normal placeholder:italic placeholder:text-[#b6ab97] focus:border-[#b91c1c]/60 sm:px-4 sm:py-3 sm:text-[19px] focus:shadow-[0_0_0_3px_rgba(185,28,28,0.08)]"
             />
           </label>
           {!input.trim() && (
